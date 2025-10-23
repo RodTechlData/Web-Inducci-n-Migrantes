@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio · Jóvenes Migrantes en Chile · DataFlowIA</title>
+  <link rel="icon" href="https://placehold.co/32x32/0F172A/22D3EE?text=JM" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap');
+    :root{
+      --c-bg:#0F172A; /* slate-900 */
+      --c-cyan:#22D3EE; /* cyan-400 */
+      --c-indigo:#6366F1; /* indigo-500 */
+    }
+    body{
+      font-family:'Inter',sans-serif;
+      background: radial-gradient(circle at 30% -10%, #0ea5e9 0%, rgba(14,165,233,0) 25%),
+                  radial-gradient(circle at 80% 10%, #6366F1 0%, rgba(99,102,241,0) 22%),
+                  #0F172A;
+      color:#f8fafc;
+      overflow-x:hidden;
+    }
+    /* three background */
+    #three-container{
+      position:fixed; inset:0; z-index:-10; opacity:.32; pointer-events:none;
+    }
+    header{
+      background:rgba(15,23,42,.85);
+      backdrop-filter:saturate(120%) blur(12px);
+      box-shadow:0 8px 24px rgba(0,0,0,.35);
+    }
+    .fade-in{opacity:0; transform:translateY(24px); transition:opacity 1s ease, transform 1s ease;}
+    .fade-in.is-visible{opacity:1; transform:translateY(0);}
+
+    /* gallery cards */
+    .folio-card{
+      border-radius:1rem;
+      background:linear-gradient(180deg, rgba(148,163,184,.10), rgba(30,41,59,.30));
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter:blur(8px);
+      transition:transform .45s ease, box-shadow .45s ease, filter .45s ease;
+      overflow:hidden;
+      position:relative;
+    }
+    .folio-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 18px 50px rgba(34,211,238,.25);
+      filter:saturate(110%);
+    }
+    .folio-media{
+      width:100%; height:420px; /* show full image without recorte */
+      object-fit:contain;
+      background:linear-gradient(180deg, rgba(15,23,42,.65), rgba(2,6,23,.65));
+      transition:transform .7s ease, filter .5s ease;
+    }
+    .folio-card:hover .folio-media{ transform:scale(1.03); filter:brightness(1.02); }
+    .folio-cap{
+      padding:1rem 1.25rem;
+      display:flex; align-items:center; justify-content:space-between;
+      border-top:1px solid rgba(148,163,184,.20);
+    }
+    .chip{
+      font-size:.75rem; padding:.25rem .6rem; border-radius:999px; border:1px solid currentColor;
+      opacity:.95;
+    }
+    /* ring colors */
+    .ring-cyan{ box-shadow: inset 0 3px 0 0 #22D3EE55; }
+    .ring-indigo{ box-shadow: inset 0 3px 0 0 #6366F155; }
+    .ring-amber{ box-shadow: inset 0 3px 0 0 #f59e0b55; }
+    .ring-pink{ box-shadow: inset 0 3px 0 0 #ec489955; }
+    .ring-red{ box-shadow: inset 0 3px 0 0 #ef444455; }
+    .ring-blue{ box-shadow: inset 0 3px 0 0 #3b82f655; }
+    .ring-purple{ box-shadow: inset 0 3px 0 0 #a855f755; }
+    footer{
+      background:linear-gradient(to top, #0b1220, #142132);
+      color:#94a3b8; text-align:center; padding:2rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="three-container"></div>
+
+  <header class="sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto h-16 px-4 flex items-center justify-between">
+      <h1 class="text-white font-extrabold tracking-tight">
+        <span class="text-cyan-400">DATAFLOW IA</span> · Portafolio Jóvenes Migrantes en Chile
+      </h1>
+      <nav class="hidden md:flex gap-6 text-gray-300">
+        <a href="#galeria" class="hover:text-cyan-400">Portafolio</a>
+        <a href="#contacto" class="hover:text-cyan-400">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="text-center py-20 fade-in">
+    <h2 class="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-500 mb-4">
+      Portafolio interactivo
+    </h2>
+    <p class="text-gray-300 max-w-3xl mx-auto">
+      Las 7 tarjetas completas con animaciones suaves. Pasa el mouse para ver el efecto — todo queda visible sin abrir lightbox.
+    </p>
+  </section>
+
+  <section id="galeria" class="py-10 bg-slate-900/60">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+      <!-- 1 -->
+      <figure class="folio-card ring-cyan fade-in">
+        <img class="folio-media" src="1.- Identidad y derechos.png" alt="Identidad y Derechos Migrantes en Chile" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-cyan-300">Identidad y Derechos</div>
+          <span class="chip text-cyan-300">Módulo 1</span>
+        </figcaption>
+      </figure>
+      <!-- 2 -->
+      <figure class="folio-card ring-indigo fade-in">
+        <img class="folio-media" src="2.- Lidersgo Juvenil.png" alt="¿Qué es el Liderazgo Juvenil en Chile?" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-indigo-300">Liderazgo Juvenil</div>
+          <span class="chip text-indigo-300">Módulo 2</span>
+        </figcaption>
+      </figure>
+      <!-- 3 -->
+      <figure class="folio-card ring-amber fade-in">
+        <img class="folio-media" src="3.- Salud Mental-2.png" alt="Salud Mental Adolescente e Interculturalidad" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-amber-300">Salud Mental</div>
+          <span class="chip text-amber-300">Módulo 3</span>
+        </figcaption>
+      </figure>
+      <!-- 4 -->
+      <figure class="folio-card ring-pink fade-in">
+        <img class="folio-media" src="4.- Genero Diversidad.png" alt="Género, Diversidad y Prevención de Violencias" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-pink-300">Género y Diversidad</div>
+          <span class="chip text-pink-300">Módulo 4</span>
+        </figcaption>
+      </figure>
+      <!-- 5 -->
+      <figure class="folio-card ring-red fade-in">
+        <img class="folio-media" src="5.- Salud Sexual.png" alt="Salud Sexual y Reproductiva (CLAP)" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-red-300">Salud Sexual (CLAP)</div>
+          <span class="chip text-red-300">Módulo 5</span>
+        </figcaption>
+      </figure>
+      <!-- 6 -->
+      <figure class="folio-card ring-blue fade-in">
+        <img class="folio-media" src="6.- Formación Agrupación.png" alt="Formación de Agrupaciones con apoyo municipal" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-blue-300">Formación de Agrupaciones</div>
+          <span class="chip text-blue-300">Módulo 6</span>
+        </figcaption>
+      </figure>
+      <!-- 7 -->
+      <figure class="folio-card ring-purple fade-in">
+        <img class="folio-media" src="7.- Herramientas Digitales.png" alt="Herramientas Digitales para Jóvenes Migrantes en Chile" />
+        <figcaption class="folio-cap">
+          <div class="font-semibold text-purple-300">Herramientas Digitales</div>
+          <span class="chip text-purple-300">Módulo 7</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer id="contacto">
+    <p class="text-white font-bold">Jóvenes Migrantes en Chile · DataFlowIA</p>
+    <p class="text-xs mt-1">&copy; 2025 Todos los derechos reservados · www.dataflowia.com · contacto@dataflowia.com</p>
+  </footer>
+
+  <script>
+    // THREE.js background particles
+    let scene, camera, renderer, particles;
+    function initThree(){
+      const c = document.getElementById('three-container');
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, .1, 1000);
+      camera.position.z = 5;
+      renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+      renderer.setSize(innerWidth, innerHeight);
+      c.appendChild(renderer.domElement);
+
+      const count = 420;
+      const geom = new THREE.BufferGeometry();
+      const pos = new Float32Array(count*3);
+      for(let i=0;i<count*3;i++) pos[i] = (Math.random()-0.5)*10;
+      geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const mat = new THREE.PointsMaterial({color:0x22D3EE, size:0.05, transparent:true, blending:THREE.AdditiveBlending});
+      particles = new THREE.Points(geom, mat);
+      scene.add(particles);
+      animate();
+    }
+    function animate(){
+      requestAnimationFrame(animate);
+      particles.rotation.x += 0.0008;
+      particles.rotation.y += 0.0008;
+      renderer.render(scene, camera);
+    }
+    addEventListener('resize', ()=>{
+      camera.aspect = innerWidth/innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+
+    // fade-in on scroll
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target);} });
+    }, {threshold:.1});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+    window.onload = initThree;
+  </script>
+</body>
+</html>
